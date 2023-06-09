@@ -1,0 +1,13 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.content{
+    width: 100vw;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
