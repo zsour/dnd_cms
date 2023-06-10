@@ -1,5 +1,5 @@
 .container{
-    min-width: 300px;
+    width: 306px;
     height: calc(100vh - 50px);
     display: inline-block;
     vertical-align: top;
