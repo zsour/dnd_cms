@@ -7,6 +7,9 @@ import ViewHeader from '../components/ViewHeader';
 import PropertySidebar from '../components/PropertySidebar';
 import '../../public/style/app.css';
 
+import { LayoutMediatorProvider } from '../components/hooks/layoutMediator';
+import { ElementSidebarMediatorProvider } from '../components/hooks/elementSidebarMediator';
+
 export default function App({Component, pageProps}){
 
     return <div className="content">
@@ -15,9 +18,14 @@ export default function App({Component, pageProps}){
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
             <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap" rel="stylesheet"></link>
         </Head>
-        <ViewHeader />
-        <ElementSidebar />
-        <Component {...pageProps} />
-        <PropertySidebar />
+
+        <LayoutMediatorProvider>
+            <ElementSidebarMediatorProvider>
+                <ViewHeader />
+                <ElementSidebar />
+                <Component {...pageProps} />
+                <PropertySidebar />
+            </ElementSidebarMediatorProvider>
+        </LayoutMediatorProvider>
     </div>;
 }

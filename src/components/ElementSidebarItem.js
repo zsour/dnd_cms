@@ -1,9 +1,11 @@
+import { useElementSidebarMediator } from './hooks/elementSidebarMediator';
+
 import style from '../../public/style/components/elementSidebarItem.module.css';
 
 export default function ElementSidebarItem(props){
 
-    console.log(props.icon);
-
+    const ESM = useElementSidebarMediator(); 
+    
     function iconStyle(){
         if(props.icon && props.icon.src){
             return {
