@@ -1,10 +1,10 @@
 .main{
-    width: calc(100vw - 600px);
+    width: calc(100vw - 606px);
     min-width: 800px;
     height: 400px;
     display: inline-block;
     position: absolute;
-    left: 300px;
+    left: 306px;
     top: 50px;
     text-align: left;
 }

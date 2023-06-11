@@ -11,7 +11,6 @@ import { LayoutMediatorProvider } from '../components/hooks/layoutMediator';
 import { ElementSidebarMediatorProvider } from '../components/hooks/elementSidebarMediator';
 
 export default function App({Component, pageProps}){
-
     return <div className="content">
         <Head>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,6 +23,7 @@ export default function App({Component, pageProps}){
                 <ViewHeader />
                 <ElementSidebar />
                 <Component {...pageProps} />
+                
                 <PropertySidebar />
             </ElementSidebarMediatorProvider>
         </LayoutMediatorProvider>
