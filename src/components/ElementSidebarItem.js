@@ -14,7 +14,7 @@ export default function ElementSidebarItem(props){
         }
     }
 
-    return <div className={style.container}>
+    return <div className={style.container} onClick={props.onClick}>
         <span className={style.icon} style={{...iconStyle(), backgroundSize: "80%"}}></span>
         <div className={style.titleContainer}>
             <p className={style.title}>{props.title}</p>

@@ -11,17 +11,17 @@ export const LayoutMediatorProvider = ({children}) => {
     const [styleRef, setStyleRef] = useState({});
     const [childrenRef, setChildrenRef] = useState({});
 
+    const [renderedLayout, setRenderedLayout] = useState([]);
+
     function addDiv(){
-        let newStyle = {width: "100%", height: 200, backgroundColor: "green"};
+        let newStyle = {width: "100%", height: 200, backgroundColor: "rgba(0,0,0,0.15)"};
         let children = [];
 
         let id = uuid4();
                 
         let newDiv = {
             id,
-            jsx: <div key={id} style={newStyle} onClick={() => {
-                console.log(id); 
-            }}>{children}</div>, 
+            jsx: <div key={id} style={newStyle}>{children}</div>, 
         }
 
         let tmpLayout = [...layout];
@@ -72,23 +72,20 @@ export const LayoutMediatorProvider = ({children}) => {
             jsx.push(layout[i].jsx);
         }
 
-        return jsx;
+        setRenderedLayout([...jsx]);
     }
-
-    useEffect(() => {
-        addDiv();
-        editDivStyle("34775059-b327-4c99-85bd-1abe9b543a85", {width: "100%", height: 100, backgroundColor: "orange"});
-    }, []);
 
 
     useEffect(() => {
         console.log(childrenRef);
+        renderLayout();
     }, [styleRef, childrenRef]);
 
 
     return (<LayoutMediatorContext.Provider 
         value={{
-            renderLayout  
+            addDiv,
+            renderedLayout
         }}>
 
         {children}

@@ -7,6 +7,6 @@ export default function Home(){
     const layout = useLayoutMediator();
 
     return <div className={style.main}>
-        {layout.renderLayout()}
+        {layout.renderedLayout}
     </div>
 }
