@@ -15,7 +15,9 @@ export default function ElementSidebar(){
             <ElementSidebarItem title="Div" icon={div} onClick={() => {
                 layout.addDiv();
             }}/>
-            <ElementSidebarItem title="Section" icon={section} />
+            <ElementSidebarItem title="Section" icon={section} onClick={() => {
+                layout.editDivStyle("8441c0d6-092d-4cff-9924-0ca004a358cd", {backgroundColor: "green"});
+            }} />
         </ElementSidebarCategory>
         
         <ElementSidebarCategory title="Images">

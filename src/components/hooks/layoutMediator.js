@@ -39,31 +39,31 @@ export const LayoutMediatorProvider = ({children}) => {
 
 
     function editDivStyle(id, newStyle){
-        let index = null;
-        for(let i = 0; i < layout.length; i++){
-            console.log(layout[i]);
-            if(layout[i].id === id){
-                index = i;
+        if(!styleRef[id] || !childrenRef[id]) return;
+        
+        let tmpStyleRef =  {...styleRef[id].style};
+
+        for(let s in newStyle){
+            tmpStyleRef[s] = newStyle[s];
+        }
+
+
+        let newJsx = <div key={id} style={tmpStyleRef}>{...childrenRef[id].children}</div>;
+
+        let tmpLayout = layout;
+        for(let i = 0; i < tmpLayout.length; i++){
+            if(tmpLayout[i].id == id){
+                let newLayoutRef = {id, jsx: newJsx};
+                tmpLayout.splice(i, 1, {...newLayoutRef});
                 break;
             }
         }
-
-        if(!index) return;
-
-        let tmpLayout = layout;
-
-        let newJsx = <div key={id} style={newStyle} onClick={() => {
-            console.log(id);
-        }}>{...childrenRef[id].children}</div>;
-
-        console.log(newJsx);
-
-        tmpLayout.splice(i, 1, {id, jsx: newJsx});
+        
         setLayout([...tmpLayout]);
 
-        let tmpStyleRef = {...styleRef};
-        tmpStyleRef[id].style = newStyle;
-        setStyleRef({...tmpStyleRef});
+        let tmpStyleRefList = {...styleRef};
+        tmpStyleRefList[id].style = {...tmpStyleRef};
+        setStyleRef({...tmpStyleRefList});
     }
 
     function renderLayout(){
@@ -77,13 +77,14 @@ export const LayoutMediatorProvider = ({children}) => {
 
 
     useEffect(() => {
-        console.log(childrenRef);
+        console.log(layout);
         renderLayout();
-    }, [styleRef, childrenRef]);
+    }, [layout, styleRef, childrenRef]);
 
 
     return (<LayoutMediatorContext.Provider 
         value={{
+            editDivStyle,
             addDiv,
             renderedLayout
         }}>
